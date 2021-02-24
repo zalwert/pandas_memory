@@ -1,16 +1,20 @@
-# This is a sample Python script.
+import pandas as pd
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+String = ['EUROPE', 'AFRICA', 'ASIA', 'AMERICA']
+Integer = 5
+Float = 1.00345237463452352
 
+example_df = pd.DataFrame({'col_strings': String * 25,
+                           'col_integers': [Integer] * 100,
+                           'col_floats': [Float] * 100,
+                           'col_booleans': [True, False] * 50})
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+print(example_df.dtypes)
+print(example_df.memory_usage())
 
+example_df['col_strings'] = example_df['col_strings'].astype('category')
+example_df['col_integers'] = pd.to_numeric(example_df['col_integers'], downcast='integer')
+example_df['col_floats'] = pd.to_numeric(example_df['col_floats'], downcast='float')
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+print(example_df.dtypes)
+print(example_df.memory_usage())
