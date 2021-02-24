@@ -35,5 +35,5 @@ d = {
     "object": object(),
     "boolean": True
 }
-for k, v in sorted(d.items()):
+for k, v in d.items():
     print(k, sys.getsizeof(v))
